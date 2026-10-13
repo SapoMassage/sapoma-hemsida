@@ -247,6 +247,9 @@
 
             <!-- Kontaktformulär (Byt ut # mot din Formspree-länk sen) -->
             <form action="https://formspree.io/f/xeaoynbv" method="POST" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 40px;">
+                <!-- Dolt fält som märker mejlet med EVENT i Formspree -->
+                <input type="hidden" name="_subject" value="Ny förfrågan: EVENTMASSAGE">
+
                 <div class="form-group" style="width: 100%;">
                     <label for="name">Ditt namn</label>
                     <input type="text" id="name" name="name" required placeholder="Namn Namnsson">
