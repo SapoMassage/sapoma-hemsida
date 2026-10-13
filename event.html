@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Företagsmassage & Kontakt - SapoMa</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #4A5D4E; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #F4EBE1; 
+        }
+        
+        /* EXAKT SAMMA HEADER SOM I DIN INDEX-KOD */
+        header {
+            background-color: #627566; 
+            width: 100%;
+            padding: 2px 20px; /* MINSKAT: Minsta möjliga vaddering för en smal och elegant header */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            overflow: hidden; 
+        }
+        header h1 {
+            font-family: Georgia, Garamond, "Times New Roman", serif; 
+            font-size: 5.5rem; 
+            letter-spacing: 2px;
+            font-weight: 300;
+            text-transform: none;
+            color: #CCD5AE; 
+            line-height: 1;
+        }
+        /* Texten behåller sin stora bredd, men marginalen tvingar headern att bli jättesmal */
+        .logo-img {
+            width: 420px; /* LÅST: Behåller din perfekta, breda textstorlek! */
+            height: auto; 
+            max-width: 90%; 
+            object-fit: contain;
+            opacity: 0.95;
+            transform: translateY(30px);  
+            margin: -110px 0; /* ÄNDRAT: Drar ihop den gröna headerns höjd maximalt! */
+        }
+        
+        /* Huvudinnehåll */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            position: relative; 
+            overflow: hidden;
+        }
+        
+        /* FJÄRILEN (LOGOTYPEN) I BAKGRUNDEN PÅ VÄNSTERSIDAN */
+        .large-background-logo {
+            position: absolute;
+            left: -5%; 
+            top: 50%;
+            transform: translateY(-50%);
+            width: 550px; 
+            height: 550px;
+            background-image: url('logo.png'); 
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08; 
+            pointer-events: none;
+            z-index: 1;
+            mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0));
+            -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 60%, rgba(0,0,0,0));
+        }
+        
+        /* Helt centrerat textcontainer */
+        .container {
+            max-width: 650px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2; 
+        }
+        
+        /* EXAKT SAMMA STIL SOM VÄLKOMMEN-TEXTEN */
+        .welcome-text {
+            font-family: Georgia, Garamond, "Times New Roman", serif;
+            font-size: 1.8rem;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+            color: #CCD5AE;
+            font-weight: 300;
+            text-align: center;
+        }
+        
+        .intro-p {
+            line-height: 1.8;
+            font-size: 1.15rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        /* Snyggt och stilrent kontaktformulär */
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            gap: 5px;
+        }
+        label {
+            font-size: 0.95rem;
+            color: #CCD5AE;
+            letter-spacing: 0.5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            background-color: rgba(244, 235, 225, 0.06);
+            border: 1px solid rgba(244, 235, 225, 0.2);
+            border-radius: 8px;
+            color: #F4EBE1;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #CCD5AE;
+        }
+        
+        /* Direktkontakt-info */
+        .contact-details {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #F4EBE1;
+            opacity: 0.9;
+        }
+        
+        .highlight {
+            font-weight: 600;
+            color: #CCD5AE;
+        }
+        
+        /* Knapparna matchar index-knapparna */
+        .submit-btn {
+            width: 100%;
+            max-width: 240px;
+            padding: 18px 10px;
+            background-color: #D9C5B2; 
+            color: #3E3129; 
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #E6D7C8;
+            transform: translateY(-2px);
+        }
+        
+        .back-btn {
+            font-size: 1rem;
+            color: #CCD5AE;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .back-btn:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        
+        /* MOBILANPASSNING FRÅN INDEX */
+        /* MOBILANPASSNING - FIXAR LOGGAN OCH HEADERN */
+        @media (max-width: 900px) {
+            header {
+                padding: 2px 10px;
+            }
+            .logo-img {
+                width: 280px; /* Krymper bredden balanserat på mobilen */
+                height: auto;
+                transform: translateY(6px); /* Justerad nedflyttning för mobilskärmar */
+                margin: -70px 0; /* Rensat gammal höjd och satt stram marginal anpassad för mobilen */
+            }
+            .large-background-logo {
+                display: none; 
+            }
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn {
+                width: 100%;
+                max-width: 100%;
+            }
+            /* Om du har submit-knappar i info/event */
+            .submit-btn {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="logo1.png" alt="Logotyp" class="logo-img">
+    </header>
+
+    <div class="main-content">
+        
+        <div class="large-background-logo"></div>
+
+        <div class="container">
+            <div class="welcome-text">
+                Boka kostnadsfritt möte
+            </div>
+            
+            <p class="intro-p">
+               Planerar ni ett event, en speciell sammankomst eller en aktivitet på arbetsplatsen? Fyll i era önskemål nedan så återkommer jag.
+            </p>
+
+            <!-- Kontaktformulär (Byt ut # mot din Formspree-länk sen) -->
+            <form action="https://formspree.io/f/xeaoynbv" method="POST" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 40px;">
+                <div class="form-group" style="width: 100%;">
+                    <label for="name">Ditt namn</label>
+                    <input type="text" id="name" name="name" required placeholder="Namn Namnsson">
+                </div>
+                
+                
+                <div class="form-group" style="width: 100%;">
+                    <label for="email">E-postadress</label>
+                    <input type="email" id="email" name="email" required placeholder="namn@mail.se">
+                </div>
+                
+                <div class="form-group" style="width: 100%;">
+                    <label for="message">Meddelande / Önskemål</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Skriv gärna vilket/vilka datum eventet avser, antal personer osv..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Skicka förfrågan</button>
+            </form>
+
+            <!-- Direktkontakt-info -->
+            <div style="font-size: 1.1rem; line-height: 1.5; margin-top: 25px; margin-bottom: 20px; text-align: center; color: #F4EBE1; opacity: 0.9;">
+                <p style="color: #CCD5AE; font-weight: 600; margin-bottom: 4px; margin-top: 0;">Direktkontakt:</p>
+                <p style="margin: 0;">E-post: kontakt.sapoma@gmail.se</p>
+                <p style="margin: 0;">Telefon: 0709-20 67 41</p>
+            </div>
+            <a href="index.html" class="back-btn">← Tillbaka till startsidan</a>
+        </div>
+        
+    </div>
+
+</body>
+</html>

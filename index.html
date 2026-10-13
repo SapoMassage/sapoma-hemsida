@@ -19,32 +19,31 @@
             color: #F4EBE1; 
         }
         
-        /* Stor och pampig header */
+        /* Justerad header för att rama in det inzoomade motivet */
+        /* En stram och perfekt balanserad header för din breda logotyp */
+        /* Justerad: Gör själva den gröna headern så smal och stram det bara går */
         header {
             background-color: #627566; 
             width: 100%;
-            padding: 35px 20px;
+            padding: 2px 20px; /* MINSKAT: Minsta möjliga vaddering för en smal och elegant header */
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
             position: relative;
             z-index: 10;
+            overflow: hidden; 
         }
-        header h1 {
-            font-family: Georgia, Garamond, "Times New Roman", serif; 
-            font-size: 5.5rem; 
-            letter-spacing: 2px;
-            font-weight: 300;
-            text-transform: none;
-            color: #CCD5AE; 
-            line-height: 1;
-        }
+        
+        /* Texten behåller sin stora bredd, men marginalen tvingar headern att bli jättesmal */
         .logo-img {
-            height: 90px; 
-            width: auto;
+            width: 420px; /* LÅST: Behåller din perfekta, breda textstorlek! */
+            height: auto; 
+            max-width: 90%; 
             object-fit: contain;
+            opacity: 0.95;
+            transform: translateY(30px);  
+            margin: -110px 0; /* ÄNDRAT: Drar ihop den gröna headerns höjd maximalt! */
         }
         
         /* Huvudinnehåll */
@@ -107,16 +106,6 @@
             margin-bottom: 25px;
         }
         
-        /* "Varmt välkommen" i matchande, mjukt lutande stil */
-        .closing-text {
-            font-family: Georgia, Garamond, "Times New Roman", serif;
-            font-style: italic; 
-            font-size: 2.8rem; 
-            margin-top: 25px;
-            color: #CCD5AE;
-            display: block;
-        }
-        
         .highlight {
             font-weight: 600;
             color: #CCD5AE;
@@ -124,13 +113,15 @@
         
         .button-group {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             width: 100%;
             justify-content: center;
+            flex-wrap: wrap;
         }
         .btn {
             flex: 1;
-            max-width: 240px;
+            min-width: 180px;
+            max-width: 210px;
             padding: 18px 10px;
             background-color: #D9C5B2; 
             color: #3E3129; 
@@ -157,18 +148,41 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.2);
         }
+
+                /* FÖRBEREDD PROFILBILD TILL HÖGER */
+        /*
+        .profile-wrapper {
+            position: absolute;
+            right: 5%; 
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px; 
+            height: 280px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%; 
+            opacity: 0.85; 
+            /* Denna rad skapar den fadeade, mjuka effekten runt kanterna: 
+            box-shadow: 0 0 30px 30px #4A5D4E inset; 
+        }*/
+        
         
         /* MOBILANPASSNING */
+        /* MOBILANPASSNING - FIXAR LOGGAN OCH HEADERN */
         @media (max-width: 900px) {
-            header h1 {
-                font-size: 3.5rem; 
-                letter-spacing: 1px;
+            header {
+                padding: 2px 10px;
             }
             .logo-img {
-                height: 60px;
-            }
-            header {
-                gap: 8px;
+                width: 280px; /* Krymper bredden balanserat på mobilen */
+                height: auto;
+                transform: translateY(6px); /* Justerad nedflyttning för mobilskärmar */
+                margin: -70px 0; /* Rensat gammal höjd och satt stram marginal anpassad för mobilen */
             }
             .large-background-logo {
                 display: none; 
@@ -181,37 +195,58 @@
                 width: 100%;
                 max-width: 100%;
             }
+            /* Om du har submit-knappar i info/event */
+            .submit-btn {
+                max-width: 100%;
+                width: 100%;
+            }
         }
     </style>
 </head>
  <body> 
 
     <header> 
-        <h1>SapoMa</h1>
-        <img src="logo.png" alt="Logotyp" class="logo-img">
+        <!-- Här laddas din logotyp med text (logo1.png) in -->
+        <img src="logo1.png" alt="SapoMa" class="logo-img">
     </header>
 
     <div class="main-content">
         
+        <!-- Här laddas den stora bakgrundsfjärilen (logo.png) in -->
         <div class="large-background-logo"></div>
-
+        <!-- FÖRBEREDD PROFILBILD (UTKOMMENTERAD - TA BORT ELEMENTEN RUNT OM SEN FÖR ATT GÖRA SYNLIG) -->
+        <!--
+        <div class="profile-wrapper">
+            <img src="therese.png" alt="Therese" class="profile-img">
+        </div>
+        -->
         <div class="container">
             <div class="welcome-text">
                 Välkommen till SapoMa
             </div>
 
             <div class="content-text">
-                <p>Jag heter Therese och är massageterapeut. SapoMa erbjuder massagebehandlingar till företag och privatpersoner. Verksamheten omfattar både djupgående muskelbehandlingar och avslappningsmassage, anpassade efter individuella behov.</p>
-                
-                <p>För företag erbjuds skräddarsydda lösningar för kontorsmassage direkt på arbetsplatsen. Regelbunden massage är en effektiv investering i personalens hälsa som kan förebygga belastningsskador, minska muskulära spänningar och kan bidra till en förbättrad arbetsmiljö. Representanter för företag är välkomna att boka ett <span class="highlight">kostnadsfritt möte</span> för ett upplägg som passar er verksamhet.</p>
-                
-                <p>Privatkunder tas emot för behandling hos MedShape på Västra Storgatan 62 i Kristianstad.</p>
+               <!-- / -->
+            <div class="content-text">
+                <!-- / -->
+            <div class="content-text">
+<!-- Text  -->
+            <div class="content-text">
+<p>Jag heter Therese och är massageterapeut. SapoMa erbjuder massagebehandlingar till företag och privatpersoner. Verksamheten omfattar både djupgående muskelbehandlingar och avslappningsmassage, anpassade efter individuella behov.</p>
+
+<p>För företag erbjuds skräddarsydda lösningar för kontorsmassage direkt på arbetsplatsen. Regelbunden massage är en effektiv investering i personalens hälsa som kan förebygga belastningsskador, minska muskulära spänningar och kan bidra till en förbättrad arbetsmiljö. Representanter för företag är välkomna att boka ett <span class="highlight">kostnadsfritt möte</span> för ett upplägg som passar er verksamhet.</p>
+
+<p>SapoMa erbjuder även massage för olika typer av event, sammankomster och speciella tillfällen. Att inkludera professionell massage under ett arrangemang är ett mycket uppskattat inslag som bidrar till avslappning, återhämtning och extra guldkant på dagen.</p>
+
+<p>Privatkunder tas emot för behandling hos MedShape på Västra Storgatan 62 i Kristianstad.</p>
+            </div>
+            </div>
                 
                 <div class="welcome-text" style="margin-top: 35px; margin-bottom: 0;">Varmt välkommen!</div>
-
             </div>
             
             <div class="button-group">
+                
                 <a href="https://cliento.com/business/medshape-ab-medshape/#service" class="btn" target="_blank">
                     Privat
                     <span>Boka på MedShape</span>
@@ -221,20 +256,29 @@
                     Företag
                     <span>Boka kostnadsfritt möte</span>
                 </a>
+
+                <a href="event.html" class="btn">
+                    Event
+                    <span>Boka Event</span>
+                </a>
             </div>
-             <!-- NYTT: Sektion för Sociala Medier på startsidan -->
-            <div style="margin-top: 50px; text-align: center;">
-                <p style="color: #CCD5AE; font-size: 0.95rem; letter-spacing: 1px; margin-bottom: 10px; font-weight: 300;">FÖLJ SAPOMA PÅ SOCIALA MEDIER</p>
+
+            <!-- DIREKTKONTAKT: Justerad för att sitta ihop mycket tätare och snyggare -->
+            <div style="font-size: 1.1rem; line-height: 1.5; margin-top: 25px; margin-bottom: 20px; text-align: center; color: #F4EBE1; opacity: 0.9;">
+                <p style="color: #CCD5AE; font-weight: 600; margin-bottom: 4px; margin-top: 0;">Direktkontakt:</p>
+                <p style="margin: 0;">E-post: kontakt.sapoma@gmail.se</p>
+                <p style="margin: 0;">Telefon: 0709-20 67 41</p>
+            </div>
+
+            <!-- Sociala medier -->
+            <div style="margin-top: 25px; text-align: center;">
+                <p style="color: #CCD5AE; font-size: 0.95rem; letter-spacing: 1px; margin: 0 0 6px 0; font-weight: 300;">FÖLJ SAPOMA PÅ SOCIALA MEDIER</p>
                 <div style="display: flex; gap: 25px; justify-content: center;">
-                    <!-- BYT UT '#' MOT DIN INSTAGRAM-LÄNK -->
-                    <a href="#" target="_blank" style="color: #F4EBE1; text-decoration: none; font-size: 1.05rem; transition: color 0.2s;" onmouseover="this.style.color='#CCD5AE'" onmouseout="this.style.color='#F4EBE1'">Instagram</a>
-                    <!-- BYT UT '#' MOT DIN FACEBOOK-LÄNK -->
-                    <a href="#" target="_blank" style="color: #F4EBE1; text-decoration: none; font-size: 1.05rem; transition: color 0.2s;" onmouseover="this.style.color='#CCD5AE'" onmouseout="this.style.color='#F4EBE1'">Facebook</a>
+                    <a href="https://instagram.com/sapoma.massage" target="_blank" style="color: #F4EBE1; text-decoration: none; font-size: 1.05rem; transition: color 0.2s;" onmouseover="this.style.color='#CCD5AE'" onmouseout="this.style.color='#F4EBE1'">Instagram</a>
                 </div>
             </div>
-        </div>
-        
-    </div>
 
+        </div> <!-- Här stänger vi container -->
+    </div> <!-- Här stänger vi main-content -->
 </body>
 </html>
